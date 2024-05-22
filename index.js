@@ -25,35 +25,23 @@ const app = express();
 app.use(express.json()); // Parse JSON bodies
 app.use(
 	cors({
-		// origin: 'https://seemetest.netlify.app',
-		origin: 'http://localhost:3001',
+		origin: 'https://seemetest.netlify.app',
+		// origin: 'http://localhost:3001',
 		allowedHeaders: '*',
 		allowMethods: '*',
 	})
 );
-// app.use(cors({
-//     origin: function (origin, callback) {
-//       // Check if the origin of the request is in the allowedOrigins array
-//       if (!origin || allowedOrigins.includes(origin)) {
-//         callback(null, true);
-//       } else {
-//         callback(new Error('Not allowed by CORS'));
-//       }
-//     },
-//     allowedHeaders: '*',
-//     allowMethods: '*'
-// }));
+
 app.use(express.urlencoded({ extended: true })); // Parse URL-encoded bodies
 app.use(cookieParser());
 
 // Mount router at root path
 app.use(router);
-// app.get('*', checkUser);
 
 // Set port from environment variable, defaulting to 5000 if not provided
-const PORT = process.env.PORT || 5000;
+const port = process.env.PORT || 4000;
 
 // Start server and listen on specified port
-app.listen(PORT, () => {
-	console.log(`Server is running on port ${PORT}`);
+app.listen(port, () => {
+	console.log(`Server is running on port ${port}`);
 });
